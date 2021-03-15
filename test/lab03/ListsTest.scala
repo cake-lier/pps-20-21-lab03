@@ -3,7 +3,7 @@ package lab03
 import org.junit.jupiter.api.{Assertions, Test}
 import u03.Lists.List.{Cons, Nil}
 import u03.Lists.List
-import lab03.Lists.{drop, flatMap}
+import lab03.Lists.{drop, flatMap, map}
 
 class ListsTest {
     val list: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
@@ -25,5 +25,12 @@ class ListsTest {
         Assertions.assertEquals(Nil(), flatMap(Nil[Int]())(v => Cons(v + 1, Nil())))
         Assertions.assertEquals(Nil(), flatMap(Nil[Int]())(v => Cons(v + 1, list)))
         Assertions.assertEquals(Nil(), flatMap(list)(_ => Nil[Int]()))
+    }
+
+    @Test
+    def testMap(): Unit = {
+        Assertions.assertEquals(Cons(11, Cons(21, Cons(31, Nil()))), map(list)(_ + 1))
+        Assertions.assertEquals(Nil(), map(Nil[Int]())(_ + 1))
+        Assertions.assertEquals(Cons(Nil(), Cons(Nil(), Cons(Nil(), Nil()))), map(list)(_ => Nil()))
     }
 }

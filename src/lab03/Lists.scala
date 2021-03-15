@@ -17,4 +17,6 @@ object Lists {
         case Cons(h, t) => append(f(h), flatMap(t)(f))
         case _ => Nil()
     }
+
+    def map[A, B](l: List[A])(f: A => B): List[B] = flatMap(l)(e => Cons(f(e), Nil()))
 }
