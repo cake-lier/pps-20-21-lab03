@@ -38,4 +38,15 @@ object Lists {
         case Teacher(_, c) => Cons(c, Nil())
         case _ => Nil()
     }
+
+    @tailrec
+    def foldLeft[A, B](l: List[A])(seed: B)(accumulator: (B, A) => B): B = l match {
+        case Cons(h, t) => foldLeft(t)(accumulator(seed, h))(accumulator)
+        case _ => seed
+    }
+
+    def foldRight[A, B](l: List[A])(seed: B)(accumulator: (A, B) => B): B = l match {
+        case Cons(h, t) => accumulator(h, foldRight(t)(seed)(accumulator))
+        case _ => seed
+    }
 }
