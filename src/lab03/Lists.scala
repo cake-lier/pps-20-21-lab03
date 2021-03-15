@@ -1,9 +1,11 @@
 package lab03
 
-import u03.Lists.List.{Cons, Nil, append}
-import u03.Lists.List
+import u02.Modules.Person
+import u02.Modules.Person.Teacher
 import u02.Optionals.Option
 import u02.Optionals.Option.{None, Some}
+import u03.Lists.List
+import u03.Lists.List.{Cons, Nil, append}
 
 import scala.annotation.tailrec
 
@@ -30,5 +32,10 @@ object Lists {
             case _ => Some(h)
         }
         case _ => None()
+    }
+
+    def extractCourses(l: List[Person]): List[String] = flatMap(l) {
+        case Teacher(_, c) => Cons(c, Nil())
+        case _ => Nil()
     }
 }
