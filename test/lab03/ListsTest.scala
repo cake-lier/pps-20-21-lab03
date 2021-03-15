@@ -3,7 +3,8 @@ package lab03
 import org.junit.jupiter.api.{Assertions, Test}
 import u03.Lists.List.{Cons, Nil}
 import u03.Lists.List
-import lab03.Lists.{drop, filter, flatMap, map}
+import lab03.Lists.{drop, filter, flatMap, map, max}
+import u02.Optionals.Option.{Some, None}
 
 class ListsTest {
     val list: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
@@ -40,5 +41,12 @@ class ListsTest {
         Assertions.assertEquals(Nil(), filter(list)(_ > 100))
         Assertions.assertEquals(list, filter(list)(_ > 0))
         Assertions.assertEquals(Nil(), filter(Nil[Int]())(_ > 20))
+    }
+
+    @Test
+    def testMax(): Unit = {
+        Assertions.assertEquals(Some(25), max(Cons(10, Cons(25, Cons(20, Nil())))))
+        Assertions.assertEquals(Some(10), max(Cons(10, Nil())))
+        Assertions.assertEquals(None(), max(Nil()))
     }
 }
