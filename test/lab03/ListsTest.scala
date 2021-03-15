@@ -10,7 +10,7 @@ import u03.Lists.List.{Cons, Nil}
 class ListsTest {
     private val list: List[Int] = Cons(10, Cons(20, Cons(30, Nil())))
     private val foldList1: List[Int] = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
-    private val list3: List[String] = Cons("b", Cons("c", Cons("d", Nil())))
+    private val foldList2: List[String] = Cons("b", Cons("c", Cons("d", Nil())))
 
     @Test
     def testDrop(): Unit = {
@@ -67,7 +67,7 @@ class ListsTest {
         Assertions.assertEquals(-16, foldLeft(foldList1)(0)(_ - _))
         Assertions.assertEquals(0, foldLeft(Nil[Int]())(0)(_ - _))
         Assertions.assertEquals(-1, foldLeft(Cons(1, Nil()))(0)(_ - _))
-        Assertions.assertEquals("abcd", foldLeft(list3)("a")(_ + _))
+        Assertions.assertEquals("abcd", foldLeft(foldList2)("a")(_ + _))
     }
 
     @Test
@@ -75,6 +75,6 @@ class ListsTest {
         Assertions.assertEquals(-8, foldRight(foldList1)(0)(_ - _))
         Assertions.assertEquals(0, foldRight(Nil[Int]())(0)(_ - _))
         Assertions.assertEquals(1, foldRight(Cons(1, Nil()))(0)(_ - _))
-        Assertions.assertEquals("bcda", foldRight(list3)("a")(_ + _))
+        Assertions.assertEquals("bcda", foldRight(foldList2)("a")(_ + _))
     }
 }
