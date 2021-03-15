@@ -3,7 +3,7 @@ package lab03
 import org.junit.jupiter.api.{Assertions, Test}
 import u03.Lists.List.{Cons, Nil}
 import u03.Streams.Stream
-import lab03.Streams.{constant, drop}
+import lab03.Streams.{constant, drop, fibonacci}
 
 class StreamsTest {
     @Test
@@ -22,5 +22,12 @@ class StreamsTest {
         val nilK = Nil()
         Assertions.assertEquals(Cons(nilK, Cons(nilK, Cons(nilK, Cons(nilK, Cons(nilK, Nil()))))),
                                 Stream.toList(Stream.take(constant(nilK))(5)))
+    }
+
+    @Test
+    def testFibonacci(): Unit = {
+        val fibs = fibonacci()
+        Assertions.assertEquals(Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons(8, Cons(13, Nil())))))))),
+                                Stream.toList(Stream.take(fibs)(8)))
     }
 }

@@ -13,4 +13,9 @@ object Streams {
     }
 
     def constant[A](k: => A): Stream[A] = iterate(k)(x => x)
+
+    def fibonacci(): Stream[Int] = {
+        def _fib(a: => Int, b: => Int): Stream[Int] = Stream.cons(a, _fib(b, a + b))
+        _fib(0, 1)
+    }
 }
