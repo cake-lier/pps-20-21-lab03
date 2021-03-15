@@ -1,7 +1,7 @@
 package lab03
 
 import u03.Streams.Stream
-import u03.Streams.Stream.{Cons, Empty, iterate}
+import u03.Streams.Stream.{Cons, iterate}
 
 import scala.annotation.tailrec
 
@@ -11,4 +11,6 @@ object Streams {
         case Cons(_, t) if n > 0 => drop(t())(n - 1)
         case _ => s
     }
+
+    def constant[A](k: => A): Stream[A] = iterate(k)(x => x)
 }
