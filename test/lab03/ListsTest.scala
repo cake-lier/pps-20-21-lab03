@@ -11,5 +11,7 @@ class ListsTest {
         Assertions.assertEquals(Cons(20, Cons(30, Nil())), drop(list, 1))
         Assertions.assertEquals(Cons(30, Nil()), drop(list, 2))
         Assertions.assertEquals(Nil(), drop(list, 5))
+        Assertions.assertEquals(list, drop(list, 0))
+        Assertions.assertEquals(list, drop(list, -2))
     }
 }

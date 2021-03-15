@@ -8,7 +8,8 @@ import scala.annotation.tailrec
 object Lists {
     @tailrec
     def drop[A](l: List[A], n: Int): List[A] = l match {
-        case Cons(h, t) => if (n > 0) { drop(t, n - 1) } else { Cons(h, t) }
+        case Cons(_, t) if n > 0 => drop(t, n - 1)
+        case Cons(h, t) => Cons(h, t)
         case Nil() => Nil()
     }
 }
